@@ -4,32 +4,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import java.util.UUID;
 //import lombok.Setter;
 
 @Entity
 public class Student {
-    @Id
-    @GeneratedValue
-//    (strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
     private String first;
     private String last;
     private String num;
     private float av;
 
-    protected Student() {
-
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirst() {
         return first;
@@ -65,6 +61,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "student [id=" + id + ", first=" + first +", last=" + last + ", num=" + num + ", av=" + av + "]";
+        return "student [id=" + id + ", first=" + first + ", last=" + last + ", num=" + num + ", av=" + av + "]";
     }
 }
