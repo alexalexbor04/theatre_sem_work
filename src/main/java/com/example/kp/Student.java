@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.UUID;
-//import lombok.Setter;
 
 @Entity
 public class Student {
