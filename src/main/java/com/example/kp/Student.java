@@ -9,19 +9,21 @@ import java.util.UUID;
 
 @Entity
 public class Student {
-    private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String first;
     private String last;
     private String num;
     private float av;
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public UUID getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getId() {
         return id;
     }
 
