@@ -20,35 +20,35 @@ public class AppController {
 
     @RequestMapping("/")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
-        List<Student> listStudents = service.listAll(keyword);
-        model.addAttribute("ListStudents", listStudents);
+        List<Theatre> listPLays = service.listAll(keyword);
+        model.addAttribute("listPLays", listPLays);
         model.addAttribute("keyword", keyword);
         return "index";
     }
 
     @RequestMapping("/new")
-    public String showNewStudentForm(Model model) {
-        Student student = new Student();
-        model.addAttribute("student", student);
+    public String showNewPlayForm(Model model) {
+        Theatre play = new Theatre();
+        model.addAttribute("play", play);
         return "new_student";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveStudent(@ModelAttribute("student") Student student) {
-        service.save(student);
+    public String savePlay(@ModelAttribute("play") Theatre play) {
+        service.save(play);
         return "redirect:/";
     }
 
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditStudentForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_student");
-        Student student = service.get(id);
-        mav.addObject("student", student);
+    public ModelAndView showEditPlayForm(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_play");
+        Theatre play = service.get(id);
+        mav.addObject("play", play);
         return mav;
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable(name = "id") Long id) {
+    public String deletePlay(@PathVariable(name = "id") Long id) {
         service.delete(id);
         return "redirect:/";
     }

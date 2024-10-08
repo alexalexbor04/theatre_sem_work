@@ -10,18 +10,18 @@ public class StudentService {
     @Autowired
     private StudentRepository repo;
 
-    public List<Student> listAll(String keyword) {
+    public List<Theatre> listAll(String keyword) {
         if (keyword != null) {
             return repo.search(keyword);
         }
         return repo.findAll();
     }
 
-    public void save(Student student) {
-        repo.save(student);
+    public void save(Theatre theatre) {
+        repo.save(theatre);
     }
 
-    public Student get(Long id) {
+    public Theatre get(Long id) {
         return repo.findById(Math.toIntExact(id)).get();
     }
 

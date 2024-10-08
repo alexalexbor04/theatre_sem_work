@@ -6,8 +6,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 
 @SpringBootApplication
-public class StudentManagerApplication extends SpringBootServletInitializer {
+public class TheatreManagerApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(StudentManagerApplication.class, args); //запуск приложения
+        SpringApplication.run(TheatreManagerApplication.class, args); //запуск приложения
     }
 }
