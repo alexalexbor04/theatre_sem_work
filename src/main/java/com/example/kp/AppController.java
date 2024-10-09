@@ -30,7 +30,7 @@ public class AppController {
     public String showNewPlayForm(Model model) {
         Theatre play = new Theatre();
         model.addAttribute("play", play);
-        return "new_student";
+        return "new_place";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -41,7 +41,7 @@ public class AppController {
 
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditPlayForm(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_play");
+        ModelAndView mav = new ModelAndView("edit_place");
         Theatre play = service.get(id);
         mav.addObject("play", play);
         return mav;
