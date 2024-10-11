@@ -21,9 +21,9 @@ public class StudentService {
         return repo.findByDate(date);
     }
 
-    public List<Object[]> getPlayCountByDay() {
-        return repo.countPlaysByDay();
-    }
+//    public List<Object[]> getPlayCountByDay() {
+//        return repo.countPlaysByDay();
+//    }
 
     public void save(Theatre theatre) {
         repo.save(theatre);

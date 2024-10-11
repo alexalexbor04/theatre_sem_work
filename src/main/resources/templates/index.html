@@ -20,10 +20,9 @@
                        onclick="clearSearch()"/>
             </form>
             <h4>Фильтр по дате:</h4>
-            <form th:action="@{/filterByDate}" method="get">
-                <label for="date">Выберите дату спектакля:</label>
-                <input type="date" id="date" name="date"/>
-                <input type="submit" class="btn btn-primary" value="Фильтр"/>
+            <form th:action="@{/filterByDate}">
+                <input type="text" id="date" name="date"/>
+                <input type="submit" class="btn btn-success btn-sm" value="Выбрать"/>
             </form>
         </div>
     </div>
@@ -78,34 +77,5 @@
         window.location = "[[@{/}]]";
     }
 </script>
-<!--<canvas id="playsChart" width="400" height="200"></canvas>-->
-
-<!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
-<!--<script>-->
-<!--    var ctx = document.getElementById('playsChart').getContext('2d');-->
-<!--    var labels = /*[[${playCountData*.get(0)}]]*/[];-->
-<!--    var data = /*[[${playCountData*.get(1)}]]*/[];-->
-
-<!--    var playsChart = new Chart(ctx, {-->
-<!--        type: 'bar',-->
-<!--        data: {-->
-<!--            labels: labels,-->
-<!--            datasets: [{-->
-<!--                label: 'Количество спектаклей по дням',-->
-<!--                data: data,-->
-<!--                backgroundColor: 'rgba(75, 192, 192, 0.2)',-->
-<!--                borderColor: 'rgba(75, 192, 192, 1)',-->
-<!--                borderWidth: 1-->
-<!--            }]-->
-<!--        },-->
-<!--        options: {-->
-<!--            scales: {-->
-<!--                y: {-->
-<!--                    beginAtZero: true-->
-<!--                }-->
-<!--            }-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
 </body>
 </html>
