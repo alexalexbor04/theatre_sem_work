@@ -30,6 +30,7 @@ public class AppController {
     public String filterByDate(Model model, @Param("date") String date) {
         List<Theatre> listPLays = service.filterByDate(date);
         model.addAttribute("listPLays", listPLays);
+        model.addAttribute("date", date);
         return "index";
     }
 
