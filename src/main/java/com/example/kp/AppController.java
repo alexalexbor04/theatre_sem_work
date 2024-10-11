@@ -26,6 +26,13 @@ public class AppController {
         return "index";
     }
 
+    @RequestMapping("/filterByDate")
+    public String filterByDate(Model model, @Param("date") String date) {
+        List<Theatre> listPLays = service.filterByDate(date);
+        model.addAttribute("listPLays", listPLays);
+        return "index";
+    }
+
     @RequestMapping("/new")
     public String showNewPlayForm(Model model) {
         Theatre play = new Theatre();
@@ -52,4 +59,14 @@ public class AppController {
         service.delete(id);
         return "redirect:/";
     }
+
+    @RequestMapping("/playCountByDay")
+    public String getPlayCountByDay(Model model) {
+        List<Object[]> playCountData = service.getPlayCountByDay();
+        model.addAttribute("playCountData", playCountData);
+        return "chart";
+    }
+
 }
+
+
