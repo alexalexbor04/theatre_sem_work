@@ -60,12 +60,12 @@ public class AppController {
         return "redirect:/";
     }
 
-    @RequestMapping("/playCountByDay")
-    public String getPlayCountByDay(Model model) {
-        List<Object[]> playCountData = service.getPlayCountByDay();
-        model.addAttribute("playCountData", playCountData);
-        return "chart";
-    }
+//    @RequestMapping("/playCountByDay")
+//    public String getPlayCountByDay(Model model) {
+//        List<Object[]> playCountData = service.getPlayCountByDay();
+//        model.addAttribute("playCountData", playCountData);
+//        return "chart";
+//    }
 
 }
 
