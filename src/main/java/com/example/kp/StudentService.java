@@ -17,7 +17,7 @@ public class StudentService {
         return repo.findAll();
     }
 
-    public List<Theatre> filterByDate(String date) {
+    public List<Theatre> filterByDate(java.sql.Date date) {
         return repo.findByDate(date);
     }
 

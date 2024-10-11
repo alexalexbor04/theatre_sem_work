@@ -27,7 +27,7 @@ public class AppController {
     }
 
     @RequestMapping("/filterByDate")
-    public String filterByDate(Model model, @Param("date") String date) {
+    public String filterByDate(Model model, @Param("date") java.sql.Date date) {
         List<Theatre> listPLays = service.filterByDate(date);
         model.addAttribute("listPLays", listPLays);
         model.addAttribute("date", date);
