@@ -27,10 +27,6 @@ public class StudentService {
         return repo.findByDate(date);
     }
 
-//    public List<Object[]> countByDayChart() {
-//        return repo.countByDayChart();
-//    }
-
     public void save(Theatre theatre) {
         repo.save(theatre);
     }
