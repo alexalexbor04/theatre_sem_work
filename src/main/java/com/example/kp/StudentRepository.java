@@ -10,7 +10,7 @@ public interface StudentRepository extends JpaRepository<Theatre, Integer> {
 
     @Query("SELECT p FROM Theatre p WHERE DATE(p.date) = ?1")
     List<Theatre> findByDate(java.sql.Date date);
+
+    @Query("SELECT DATE(date), COUNT(date) FROM Theatre GROUP BY DATE(date)")
+    List<Object[]> countByDayChart();
 }
-//    @Query("SELECT DATE(p.date), COUNT(p) FROM Theatre p GROUP BY DATE(p.date)")
-//    List<Object[]> countPlaysByDay();
-//}

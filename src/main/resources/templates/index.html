@@ -24,6 +24,9 @@
                 <input type="date" id="date" name="date" required/>
                 <input type="submit" class="btn btn-success btn-sm" value="Выбрать"/>
             </form>
+            <h4>Гистограмма:</h4>
+            <form th:action="@{/getChart}"></form>
+            <a th:href="@{'/chart'}"><button type="button" class="btn btn-info">Посмотреть</button></a>
         </div>
     </div>
     <table id="1" class="table table-striped table-hover">

@@ -1,5 +1,6 @@
 package com.example.kp;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,12 +62,25 @@ public class AppController {
         return "redirect:/";
     }
 
-//    @RequestMapping("/playCountByDay")
-//    public String getPlayCountByDay(Model model) {
-//        List<Object[]> playCountData = service.getPlayCountByDay();
-//        model.addAttribute("playCountData", playCountData);
+    @RequestMapping("/chart")
+    public String getChart(Model model) throws IOException {
+        // Генерируем гистограмму и получаем путь к изображению
+        String chart = null;
+        try {
+            chart = service.generateBarChart();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Передаем путь к изображению в модель
+        model.addAttribute("chart", chart);
+
+        // Возвращаем имя шаблона
+        return "chart";
+//        List<Object[]> playChart = service.countByDayChart();
+//        model.addAttribute("playChart", playChart);
 //        return "chart";
-//    }
+    }
 
 }
 
