@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Система работы со студентами</title>
+    <title>Система покупки билетов в театр</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -12,12 +12,12 @@
     <blockquote class="blockquote text-center"><h1>хуй факультета ИТиАБД</h1></blockquote>
     <div class="row">
         <div class="col-md-8 offset-md-4">
-            <h4>Поиск плейс по любому критерию:</h4>
+            <!-- <h4>Поиск плейс по любому критерию:</h4> -->
             <form th:action="@{/}">
-                <input type="text" name="keyword" id="keyword" size="70" th:value="${keyword}" required/>
+                <input placeholder="Поиск по спектаклю" type="text" name="keyword" id="keyword" size="70" th:value="${keyword}" required/>
                 <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
                 <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear"
-                       onclick="clearSearch()"/>
+                       onclick="clearSearch()" />
             </form>
             <h4>Фильтр по дате:</h4>
             <form th:action="@{/filterByDate}">
@@ -37,17 +37,17 @@
             <th scope="col">труп</th>
             <th scope="col">дата</th>
             <th scope="col">все билеты</th>
-            <th scope="col">купи меня </th>
+            <th scope="col">свободные билеты</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="theatre: ${listPLays}">
-            <th scope="row" class="text-white" th:text="${theatre.id}">ID govna отстутсвует</th>
+            <th scope="row" class="text-white" th:text="${theatre.id}">ID отстутсвует</th>
             <th scope="row" class="text-white" th:text="${theatre.name}">Название спектакля отсутствует</th>
-            <th scope="row" class="text-white" th:text="${theatre.troupe}">труппа нет</th>
-            <th scope="row" class="text-white" th:text="${theatre.date}">дфты нет</th>
-            <th scope="row" class="text-white" th:text="${theatre.total_tickets}"> tt нет</th>
-            <th scope="row" class="text-white" th:text="${theatre.free_tickets}">ft нет</th>
+            <th scope="row" class="text-white" th:text="${theatre.troupe}">труппа отсутствует</th>
+            <th scope="row" class="text-white" th:text="${theatre.date}">дата отсутствует</th>
+            <th scope="row" class="text-white" th:text="${theatre.total_tickets}"> нет</th>
+            <th scope="row" class="text-white" th:text="${theatre.free_tickets}">нет</th>
             <td>
                 <a th:href="@{'/edit/'+${theatre.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
                 <a th:href="@{'/delete/'+${theatre.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
@@ -61,7 +61,7 @@
                 let table = document.getElementById('1')
                 let tBody = table.querySelector('tbody')
                 const count = tBody.querySelectorAll('tr').length;
-                document.write('Количество чего-то в таблице: ' + count)
+                document.write('Количество спектаклей в таблице: ' + count)
             }
 
             getRowsColumn()
