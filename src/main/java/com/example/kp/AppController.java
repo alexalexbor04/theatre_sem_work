@@ -63,23 +63,16 @@ public class AppController {
     }
 
     @RequestMapping("/chart")
-    public String getChart(Model model) throws IOException {
-        // Генерируем гистограмму и получаем путь к изображению
+    public String getChart(Model model) {
         String chart = null;
         try {
             chart = service.generateBarChart();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        // Передаем путь к изображению в модель
         model.addAttribute("chart", chart);
 
-        // Возвращаем имя шаблона
         return "chart";
-//        List<Object[]> playChart = service.countByDayChart();
-//        model.addAttribute("playChart", playChart);
-//        return "chart";
     }
 
 }
