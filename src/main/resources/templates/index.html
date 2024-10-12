@@ -1,84 +1,142 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Система покупки билетов в театр</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body>
-<div class="bg-image"
-     style="background-image: url('https://palchevsky.ru/images/background.jpg'); height: 100vh; overflow: auto">
-    <blockquote class="blockquote text-center"><h1>Система покупки билетов в театр</h1></blockquote>
-    <div class="row">
-        <div class="col-md-8 offset-md-4">
-            <!-- <h4>Поиск плейс по любому критерию:</h4> -->
-            <form th:action="@{/}">
-                <input placeholder="Поиск по спектаклю" type="text" name="keyword" id="keyword" size="70" th:value="${keyword}" required/>
-                <input type="submit" class="btn btn-success btn-sm" value="Поиск"/>
-                <input type="button" class="btn btn-warning btn-sm" value="Очистить" id="btnClear"
-                       onclick="clearSearch()" />
-            </form>
-            <h4>Фильтр по дате:</h4>
-            <form th:action="@{/filterByDate}">
-                <input type="date" id="date" name="date" required/>
-                <input type="submit" class="btn btn-success btn-sm" value="Выбрать"/>
-            </form>
-            <h4>Гистограмма:</h4>
-            <form th:action="@{/getChart}"></form>
-            <a th:href="@{'/chart'}"><button type="button" class="btn btn-info">Посмотреть</button></a>
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Система покупки билетов в театр</h1>
+      <div class="row">
+        <div class="search_filters">
+          <!-- <h4>Поиск плейс по любому критерию:</h4> -->
+          <!-- <div class="search_filters"> -->
+          <form th:action="@{/}">
+            <input
+              class="input_field"
+              placeholder="Поиск по спектаклю"
+              type="text"
+              name="keyword"
+              id="keyword"
+              size="70"
+              th:value="${keyword}"
+              required
+            />
+            <input type="submit" class="btn btn-success btn-sm" value="Поиск" />
+            <input
+              type="button"
+              class="btn btn-warning btn-sm"
+              value="Очистить"
+              id="btnClear"
+              onclick="clearSearch()"
+            />
+          </form>
         </div>
-    </div>
-    <table id="1" class="table table-striped table-hover">
+        <div class="additional_filters">
+          <h4 class="filter_name">Фильтр по дате:</h4>
+          <form th:action="@{/filterByDate}">
+            <input type="date" id="date" name="date" required />
+            <input
+              type="submit"
+              class="btn btn-success btn-sm"
+              value="Выбрать"
+            />
+          </form>
+          <!-- </div> -->
+          <h4 class="filter_name">Гистограмма:</h4>
+          <form th:action="@{/getChart}"></form>
+          <a th:href="@{'/chart'}"
+            ><button type="button" class="btn btn-info">Посмотреть</button></a
+          >
+        </div>
+      </div>
+      <table id="1" class="table table-striped table-hover">
         <thead>
-        <tr>
-            <th scope="col">ID </th>
+          <tr>
+            <th scope="col">ID</th>
             <th scope="col">Имя</th>
             <th scope="col">труп</th>
             <th scope="col">дата</th>
             <th scope="col">все билеты</th>
             <th scope="col">свободные билеты</th>
-        </tr>
+          </tr>
         </thead>
         <tbody>
-        <tr th:each="theatre: ${listPLays}">
-            <th scope="row" class="text-white" th:text="${theatre.id}">ID отстутсвует</th>
-            <th scope="row" class="text-white" th:text="${theatre.name}">Название спектакля отсутствует</th>
-            <th scope="row" class="text-white" th:text="${theatre.troupe}">труппа отсутствует</th>
-            <th scope="row" class="text-white" th:text="${theatre.date}">дата отсутствует</th>
-            <th scope="row" class="text-white" th:text="${theatre.total_tickets}"> нет</th>
-            <th scope="row" class="text-white" th:text="${theatre.free_tickets}">нет</th>
+          <tr th:each="theatre: ${listPLays}">
+            <th scope="row" class="text-white" th:text="${theatre.id}">
+              ID отстутсвует
+            </th>
+            <th scope="row" class="text-white" th:text="${theatre.name}">
+              Название спектакля отсутствует
+            </th>
+            <th scope="row" class="text-white" th:text="${theatre.troupe}">
+              труппа отсутствует
+            </th>
+            <th scope="row" class="text-white" th:text="${theatre.date}">
+              дата отсутствует
+            </th>
+            <th
+              scope="row"
+              class="text-white"
+              th:text="${theatre.total_tickets}"
+            >
+              нет
+            </th>
+            <th
+              scope="row"
+              class="text-white"
+              th:text="${theatre.free_tickets}"
+            >
+              нет
+            </th>
             <td>
-                <a th:href="@{'/edit/'+${theatre.id}}"><button type="button" class="btn btn-info">Редактировать</button></a>
-                <a th:href="@{'/delete/'+${theatre.id}}"><button type="button" class="btn btn-danger">Удалить</button></a>
+              <a th:href="@{'/edit/'+${theatre.id}}"
+                ><button type="button" class="btn btn-info">
+                  Редактировать
+                </button></a
+              >
+              <a th:href="@{'/delete/'+${theatre.id}}"
+                ><button type="button" class="btn btn-danger">
+                  Удалить
+                </button></a
+              >
             </td>
-        </tr>
+          </tr>
         </tbody>
-    </table>
-    <p class="text-white">
+      </table>
+      <p class="text-white">
         <script type="text/javascript">
-            function getRowsColumn() {
-                let table = document.getElementById('1')
-                let tBody = table.querySelector('tbody')
-                const count = tBody.querySelectorAll('tr').length;
-                document.write('Количество спектаклей в таблице: ' + count)
-            }
+          function getRowsColumn() {
+            let table = document.getElementById("1");
+            let tBody = table.querySelector("tbody");
+            const count = tBody.querySelectorAll("tr").length;
+            document.write("Количество спектаклей в таблице: " + count);
+          }
 
-            getRowsColumn()
+          getRowsColumn();
         </script>
-    </p>
-    <blockquote class="blockquote text-center">
+      </p>
+      <blockquote class="blockquote text-center">
         <a href="/new">
-            <button type="button" class="btn btn-primary" data-togge="button" aria-pressed="false" autocomplete="off">
-                Добавить
-            </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-togge="button"
+            aria-pressed="false"
+            autocomplete="off"
+          >
+            Добавить
+          </button>
         </a>
-    </blockquote>
-</div>
-<script type="text/javascript">
-    function clearSearch() {
+      </blockquote>
+    </div>
+    <script type="text/javascript">
+      function clearSearch() {
         window.location = "[[@{/}]]";
-    }
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>
