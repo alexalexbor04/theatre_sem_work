@@ -12,8 +12,6 @@
       <h1 class="title">Система покупки билетов в театр</h1>
       <div class="row">
         <div class="search_filters">
-          <!-- <h4>Поиск плейс по любому критерию:</h4> -->
-          <!-- <div class="search_filters"> -->
           <form th:action="@{/}">
             <input
               class="input_field"
@@ -44,8 +42,14 @@
               class="btn btn-success btn-sm"
               value="Выбрать"
             />
+            <input
+                    type="button"
+                    class="btn btn-warning btn-sm"
+                    value="Очистить"
+                    id="clear"
+                    onclick="clearSearch()"
+            />
           </form>
-          <!-- </div> -->
           <h4 class="filter_name">Гистограмма:</h4>
           <form th:action="@{/getChart}"></form>
           <a th:href="@{'/chart'}"
@@ -67,7 +71,7 @@
         <tbody>
           <tr th:each="theatre: ${listPLays}">
             <th scope="row" class="text-white" th:text="${theatre.id}">
-              ID отстутсвует
+              ID отсутствует
             </th>
             <th scope="row" class="text-white" th:text="${theatre.name}">
               Название спектакля отсутствует
