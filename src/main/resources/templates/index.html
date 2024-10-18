@@ -58,12 +58,10 @@
       <h1 class="title">Система покупки билетов в театр</h1>
       <div class="row">
         <div class="search_filters">
-          <!-- <h4>Поиск плейс по любому критерию:</h4> -->
-          <!-- <div class="search_filters"> -->
           <form th:action="@{/}">
             <input
               class="input_field"
-              placeholder="Поиск по спектаклю"
+              placeholder="Поиск спектакля"
               type="text"
               name="keyword"
               id="keyword"
@@ -90,8 +88,14 @@
               class="btn btn-success btn-sm"
               value="Выбрать"
             />
+            <input
+                    type="button"
+                    class="btn btn-warning btn-sm"
+                    value="Очистить"
+                    id="clear"
+                    onclick="clearSearch()"
+            />
           </form>
-          <!-- </div> -->
           <h4 class="filter_name">Гистограмма:</h4>
           <form th:action="@{/getChart}"></form>
           <a th:href="@{'/chart'}"
@@ -104,25 +108,25 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Имя</th>
-            <th scope="col">труп</th>
-            <th scope="col">дата</th>
-            <th scope="col">все билеты</th>
-            <th scope="col">свободные билеты</th>
+            <th scope="col">Труппа</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Все билеты</th>
+            <th scope="col">Свободные билеты</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="theatre: ${listPLays}">
             <th scope="row" class="text-white" th:text="${theatre.id}">
-              ID отстутсвует
+              ID отсутствует
             </th>
             <th scope="row" class="text-white" th:text="${theatre.name}">
               Название спектакля отсутствует
             </th>
             <th scope="row" class="text-white" th:text="${theatre.troupe}">
-              труппа отсутствует
+              Труппа отсутствует
             </th>
             <th scope="row" class="text-white" th:text="${theatre.date}">
-              дата отсутствует
+              Дата отсутствует
             </th>
             <th
               scope="row"
