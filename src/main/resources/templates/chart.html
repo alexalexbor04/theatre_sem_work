@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>Гистограмма спектаклей</title>
-</head>
-<body>
-<img th:src="@{${chart}}" alt="Гистограмма">
-</body>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 223, 196);
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <img th:src="@{${chart}}" alt="Гистограмма" />
+  </body>
 </html>

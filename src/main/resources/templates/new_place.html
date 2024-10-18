@@ -27,84 +27,73 @@
     </style>
   </head>
   <body>
-    <div class="bg-image">
-      <blockquote class="blockquote text-center">
-        <h1>Добавить спектакль</h1>
-      </blockquote>
-      <div class="row">
-        <div class="col-md-8 offset-md-4">
-          <form
-            action="#"
-            th:action="@{/save}"
-            th:object="${play}"
-            method="post"
-          >
-            <table>
-              <tr>
-                <td>* ID добавляется автоматически</td>
-              </tr>
-              <tr>
-                <td>Название:</td>
-                <td>
-                  <input
-                    placeholder="Название"
-                    type="text"
-                    th:field="*{name}"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Название коллектива:</td>
-                <td>
-                  <input
-                    placeholder="Название коллектива"
-                    type="text"
-                    th:field="*{troupe}"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Дата:</td>
-                <td>
-                  <input placeholder="Дата" type="text" th:field="*{date}" />
-                </td>
-              </tr>
-              <tr>
-                <td>Всего билетов:</td>
-                <td>
-                  <input
-                    placeholder="Всего билетов"
-                    type="text"
-                    th:field="*{total_tickets}"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Доступные билеты:</td>
-                <td>
-                  <input
-                    placeholder="Доступные билеты"
-                    type="text"
-                    th:field="*{free_tickets}"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                    data-toggle="button"
-                    aria-pressed="false"
-                    autocomplete="off"
-                  >
-                    Сохранить
-                  </button>
-                </td>
-              </tr>
-            </table>
-          </form>
-        </div>
+    <blockquote class="blockquote text-center">
+      <h1>Добавить спектакль</h1>
+    </blockquote>
+    <div class="rows">
+      <div class="content">
+        <form action="#" th:action="@{/save}" th:object="${play}" method="post">
+          <table>
+            <tr>
+              <td>* ID добавляется автоматически</td>
+            </tr>
+            <tr>
+              <td>Название:</td>
+              <td>
+                <input placeholder="Название" type="text" th:field="*{name}" />
+              </td>
+            </tr>
+            <tr>
+              <td>Название коллектива:</td>
+              <td>
+                <input
+                  placeholder="Название коллектива"
+                  type="text"
+                  th:field="*{troupe}"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Дата:</td>
+              <td>
+                <input placeholder="Дата" type="text" th:field="*{date}" />
+              </td>
+            </tr>
+            <tr>
+              <td>Всего билетов:</td>
+              <td>
+                <input
+                  placeholder="Всего билетов"
+                  type="text"
+                  th:field="*{total_tickets}"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Доступные билеты:</td>
+              <td>
+                <input
+                  placeholder="Доступные билеты"
+                  type="text"
+                  th:field="*{free_tickets}"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  data-toggle="button"
+                  aria-pressed="false"
+                  autocomplete="off"
+                >
+                  Сохранить
+                </button>
+              </td>
+            </tr>
+          </table>
+        </form>
       </div>
     </div>
   </body>

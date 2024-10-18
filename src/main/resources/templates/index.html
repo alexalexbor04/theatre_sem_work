@@ -47,7 +47,7 @@
       .btn:hover {
         background-color: #55d582;
         color: black;
-        transition-duration: 0.3s; 
+        transition-duration: 0.3s;
       }
 
       .input_field {
@@ -93,10 +93,10 @@
               th:value="${keyword}"
               required
             />
-            <input type="submit" class="btn btn-success btn-sm" value="Поиск" />
+            <input type="submit" class="btn btn-success" value="Поиск" />
             <input
               type="button"
-              class="btn btn-warning btn-sm"
+              class="btn btn-warning"
               value="Очистить"
               id="btnClear"
               onclick="clearSearch()"
@@ -107,14 +107,10 @@
           <h4 class="filter_name">Фильтр по дате:</h4>
           <form th:action="@{/filterByDate}">
             <input type="date" id="date" name="date" required />
-            <input
-              type="submit"
-              class="btn btn-success btn-sm"
-              value="Выбрать"
-            />
+            <input type="submit" class="btn btn-success" value="Выбрать" />
             <input
               type="button"
-              class="btn btn-warning btn-sm"
+              class="btn btn-warning"
               value="Очистить"
               id="clear"
               onclick="clearSearch()"
@@ -127,7 +123,7 @@
           >
         </div>
       </div>
-      <table id="1" class="table table-striped table-hover">
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -141,32 +137,14 @@
         </thead>
         <tbody>
           <tr th:each="theatre: ${listPLays}">
-            <th scope="row" class="text-white" th:text="${theatre.id}">
-              ID отсутствует
-            </th>
-            <th scope="row" class="text-white" th:text="${theatre.name}">
+            <th scope="row" th:text="${theatre.id}">ID отсутствует</th>
+            <th scope="row" th:text="${theatre.name}">
               Название спектакля отсутствует
             </th>
-            <th scope="row" class="text-white" th:text="${theatre.troupe}">
-              Труппа отсутствует
-            </th>
-            <th scope="row" class="text-white" th:text="${theatre.date}">
-              Дата отсутствует
-            </th>
-            <th
-              scope="row"
-              class="text-white"
-              th:text="${theatre.total_tickets}"
-            >
-              нет
-            </th>
-            <th
-              scope="row"
-              class="text-white"
-              th:text="${theatre.free_tickets}"
-            >
-              нет
-            </th>
+            <th scope="row" th:text="${theatre.troupe}">Труппа отсутствует</th>
+            <th scope="row" th:text="${theatre.date}">Дата отсутствует</th>
+            <th scope="row" th:text="${theatre.total_tickets}">нет</th>
+            <th scope="row" th:text="${theatre.free_tickets}">нет</th>
             <td>
               <a th:href="@{'/edit/'+${theatre.id}}"
                 ><button type="button" class="btn btn-info">
@@ -182,7 +160,7 @@
           </tr>
         </tbody>
       </table>
-      <p class="text-white">
+      <div class="container">
         <script type="text/javascript">
           function getRowsColumn() {
             let table = document.getElementById("1");
@@ -193,8 +171,8 @@
 
           getRowsColumn();
         </script>
-      </p>
-      <blockquote class="blockquote text-center">
+      </div>
+      <blockquote class="blockquote">
         <a href="/new">
           <button
             type="button"
