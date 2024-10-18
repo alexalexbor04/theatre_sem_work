@@ -6,7 +6,6 @@
     <style>
       body {
         display: flex;
-        /* justify-content: center; */
         flex-direction: column;
         background-color: rgb(255, 223, 196);
       }
@@ -42,12 +41,39 @@
         border: none;
         background-color: black;
         color: white;
+        margin: 0 5px 0 5px;
+      }
+
+      .btn:hover {
+        background-color: #55d582;
+        color: black;
+        transition-duration: 0.3s; 
       }
 
       .input_field {
         padding: 5px;
         border: none;
         border-radius: 5px;
+      }
+
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 100%;
+        display: table;
+        text-align: center;
+        table-layout: fixed;
+      }
+      thead {
+        border: 2px solid black;
+      }
+
+      table tr th {
+        border-right: 1px solid black;
+        color: black;
+      }
+      .btn-warning {
+        margin-left: 0;
       }
     </style>
   </head>
@@ -110,6 +136,7 @@
             <th scope="col">Дата</th>
             <th scope="col">Все билеты</th>
             <th scope="col">Свободные билеты</th>
+            <th scope="col">Действие:</th>
           </tr>
         </thead>
         <tbody>
