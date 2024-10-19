@@ -1,195 +1,195 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Система покупки билетов в театр</title>
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        background-color: rgb(255, 223, 196);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>Система покупки билетов в театр</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(255, 223, 196);
+    }
 
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      .search_filters {
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 20px;
-      }
+    .search_filters {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 20px;
+    }
 
-      .additional_filters {
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 20px;
-        justify-content: center;
-        align-items: center;
-      }
+    .additional_filters {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 20px;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .filter_name {
-        padding: 0;
-        margin: 0;
-      }
+    .filter_name {
+      padding: 0;
+      margin: 0;
+    }
 
-      .btn {
-        padding: 5px 5px 5px 5px;
-        border-radius: 10px;
-        border: none;
-        background-color: black;
-        color: white;
-        margin: 0 5px 0 5px;
-      }
+    .btn {
+      padding: 5px 5px 5px 5px;
+      border-radius: 10px;
+      border: none;
+      background-color: black;
+      color: white;
+      margin: 0 5px 0 5px;
+    }
 
-      .btn:hover {
-        background-color: #55d582;
-        color: black;
-        transition-duration: 0.3s;
-      }
+    .btn:hover {
+      background-color: #55d582;
+      color: black;
+      transition-duration: 0.3s;
+    }
 
-      .input_field {
-        padding: 5px;
-        border: none;
-        border-radius: 5px;
-      }
+    .input_field {
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+    }
 
-      table {
-        border: 1px solid black;
-        border-collapse: collapse;
-        width: 100%;
-        display: table;
-        text-align: center;
-        table-layout: fixed;
-      }
-      thead {
-        border: 2px solid black;
-      }
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 100%;
+      display: table;
+      text-align: center;
+      table-layout: fixed;
+    }
+    thead {
+      border: 2px solid black;
+    }
 
-      table tr th {
-        border-right: 1px solid black;
-        color: black;
-      }
-      .btn-warning {
-        margin-left: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="title">Система покупки билетов в театр</h1>
-      <div class="row">
-        <div class="search_filters">
-          <form th:action="@{/}">
-            <input
-              class="input_field"
-              placeholder="Поиск спектакля"
-              type="text"
-              name="keyword"
-              id="keyword"
-              size="70"
-              th:value="${keyword}"
-              required
-            />
-            <input type="submit" class="btn btn-success" value="Поиск" />
-            <input
-              type="button"
-              class="btn btn-warning"
-              value="Очистить"
-              id="btnClear"
-              onclick="clearSearch()"
-            />
-          </form>
-        </div>
-        <div class="additional_filters">
-          <h4 class="filter_name">Фильтр по дате:</h4>
-          <form th:action="@{/filterByDate}">
-            <input type="date" id="date" name="date" required />
-            <input type="submit" class="btn btn-success" value="Выбрать" />
-            <input
-              type="button"
-              class="btn btn-warning"
-              value="Очистить"
-              id="clear"
-              onclick="clearSearch()"
-            />
-          </form>
-          <h4 class="filter_name">Гистограмма:</h4>
-          <form th:action="@{/getChart}"></form>
-          <a th:href="@{'/chart'}"
-            ><button type="button" class="btn btn-info">Посмотреть</button></a
-          >
-        </div>
-      </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Имя</th>
-            <th scope="col">Труппа</th>
-            <th scope="col">Дата</th>
-            <th scope="col">Все билеты</th>
-            <th scope="col">Свободные билеты</th>
-            <th scope="col">Действие:</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="theatre: ${listPLays}">
-            <th scope="row" th:text="${theatre.id}">ID отсутствует</th>
-            <th scope="row" th:text="${theatre.name}">
-              Название спектакля отсутствует
-            </th>
-            <th scope="row" th:text="${theatre.troupe}">Труппа отсутствует</th>
-            <th scope="row" th:text="${theatre.date}">Дата отсутствует</th>
-            <th scope="row" th:text="${theatre.total_tickets}">нет</th>
-            <th scope="row" th:text="${theatre.free_tickets}">нет</th>
-            <td>
-              <a th:href="@{'/edit/'+${theatre.id}}"
-                ><button type="button" class="btn btn-info">
-                  Редактировать
-                </button></a
-              >
-              <a th:href="@{'/delete/'+${theatre.id}}"
-                ><button type="button" class="btn btn-danger">
-                  Удалить
-                </button></a
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="container">
-        <script type="text/javascript">
-          function getRowsColumn() {
-            let table = document.getElementById("1");
-            let tBody = table.querySelector("tbody");
-            const count = tBody.querySelectorAll("tr").length;
-            document.write("Количество спектаклей в таблице: " + count);
-          }
-
-          getRowsColumn();
-        </script>
-      </div>
-      <blockquote class="blockquote">
-        <a href="/new">
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-togge="button"
-            aria-pressed="false"
-            autocomplete="off"
-          >
-            Добавить
-          </button>
-        </a>
-      </blockquote>
+    table tr th {
+      border-right: 1px solid black;
+      color: black;
+    }
+    .btn-warning {
+      margin-left: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Система покупки билетов в театр</h1>
+  <div class="row">
+    <div class="search_filters">
+      <form th:action="@{/}">
+        <input
+                class="input_field"
+                placeholder="Поиск спектакля"
+                type="text"
+                name="keyword"
+                id="keyword"
+                size="70"
+                th:value="${keyword}"
+                required
+        />
+        <input type="submit" class="btn btn-success" value="Поиск" />
+        <input
+                type="button"
+                class="btn btn-warning"
+                value="Очистить"
+                id="btnClear"
+                onclick="clearSearch()"
+        />
+      </form>
     </div>
+    <div class="additional_filters">
+      <h4 class="filter_name">Фильтр по дате:</h4>
+      <form th:action="@{/filterByDate}">
+        <input type="date" id="date" name="date" required />
+        <input type="submit" class="btn btn-success" value="Выбрать" />
+        <input
+                type="button"
+                class="btn btn-warning"
+                value="Очистить"
+                id="clear"
+                onclick="clearSearch()"
+        />
+      </form>
+      <h4 class="filter_name">Гистограмма:</h4>
+      <form th:action="@{/getChart}"></form>
+      <a th:href="@{'/chart'}"
+      ><button type="button" class="btn btn-info">Посмотреть</button></a
+      >
+    </div>
+  </div>
+  <table class="table" id="1">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Труппа</th>
+      <th scope="col">Дата</th>
+      <th scope="col">Все билеты</th>
+      <th scope="col">Свободные билеты</th>
+      <th scope="col">Действие:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="theatre: ${listPLays}">
+      <th scope="row" th:text="${theatre.id}">ID отсутствует</th>
+      <th scope="row" th:text="${theatre.name}">
+        Название спектакля отсутствует
+      </th>
+      <th scope="row" th:text="${theatre.troupe}">Труппа отсутствует</th>
+      <th scope="row" th:text="${theatre.date}">Дата отсутствует</th>
+      <th scope="row" th:text="${theatre.total_tickets}">нет</th>
+      <th scope="row" th:text="${theatre.free_tickets}">нет</th>
+      <td>
+        <a th:href="@{'/edit/'+${theatre.id}}"
+        ><button type="button" class="btn btn-info">
+          Редактировать
+        </button></a
+        >
+        <a th:href="@{'/delete/'+${theatre.id}}"
+        ><button type="button" class="btn btn-danger">
+          Удалить
+        </button></a
+        >
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="container">
     <script type="text/javascript">
-      function clearSearch() {
-        window.location = "[[@{/}]]";
+      function getRowsColumn() {
+        let table = document.getElementById("1");
+        let tBody = table.querySelector("tbody");
+        const count = tBody.querySelectorAll("tr").length;
+        document.write("Количество спектаклей в таблице: " + count);
       }
+
+      getRowsColumn();
     </script>
-  </body>
+  </div>
+  <blockquote class="blockquote">
+    <a href="/new">
+      <button
+              type="button"
+              class="btn btn-primary"
+              data-togge="button"
+              aria-pressed="false"
+              autocomplete="off"
+      >
+        Добавить
+      </button>
+    </a>
+  </blockquote>
+</div>
+<script type="text/javascript">
+  function clearSearch() {
+    window.location = "[[@{/}]]";
+  }
+</script>
+</body>
 </html>
